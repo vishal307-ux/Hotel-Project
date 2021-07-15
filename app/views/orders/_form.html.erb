@@ -1,0 +1,69 @@
+<section class="order-form my-4 mx-4">
+    <div class="container pt-4">
+
+      <div class="row">
+        <div class="col-12">
+          <h1>Order!</h1>
+           <hr class="mt-1">
+        </div>
+
+        <%= simple_form_for @order,html: {class: "user"} do |f| %>
+
+        
+
+        <div class="col-12">
+          <div class="row mx-4">
+            <div class="col-12 mb-2">
+              <label class="order-form-label">Name</label>
+            </div>
+            <div class="col-12 col-sm-6">
+              <%= f.text_field :first_name, :class=>"order-form-input", :placeholder=>"First" , autofocus: false%>
+            </div>
+            <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+              <%= f.text_field :last_name, :class=>"order-form-input" ,:placeholder=>"Last" , autofocus: false%>
+            </div>
+            <%= f.hidden_field :user_id, :class=>"order-form-input" ,:placeholder=>"Last" , autofocus: false , :value=> current_user.id%>
+          </div>
+           <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label class="order-form-label">Email</label>
+            </div>
+            <div class="col-12">
+              <%= f.email_field :email,:class=>"order-form-input" ,:placeholder=>"Email ", value: current_user.email , autofocus: false%>
+            
+            </div>
+          </div>
+           </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label class="order-form-label">Mobile</label>
+            </div>
+            <div class="col-12">
+              <%= f.number_field :mobile, :class=>"order-form-input", :placeholder=>"mobile ", autofocus: false%>
+            </div>
+          </div>
+            <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label class="order-form-label">Adress</label>
+            </div>
+           
+
+            <div class="col-12 col-sm-6 mt-2 pr-sm-2">
+              <%= f.text_field :city,:class=>"order-form-input", :placeholder=>"City", autofocus: false%>
+            </div>
+            <div class="col-12 col-sm-6 mt-2 pl-sm-0">
+              <%= f.text_field :region, :class=>"order-form-input" ,:placeholder=>"Region", autofocus: false%>
+            </div>
+          
+
+             <div class="action">
+               <%= f.submit :submit,:class=>"btn btn-google btn-user btn-block" ,data:{disable_with: false}%>
+             </div> 
+          
+     <% end -%>
+        </div>
+      </div>
+    </div>
+  </section>

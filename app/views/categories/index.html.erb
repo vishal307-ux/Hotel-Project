@@ -1,0 +1,84 @@
+
+
+
+
+
+
+ 
+  <title>SB Admin 2 - Tables</title>
+
+
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <div class="text-right" >
+           <%if current_user.user_type == 1%>
+                  <%= link_to :new_category,new_category_path,:class=>"btn btn-primary"%>
+                  <% end -%>
+                </div>
+          
+
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Category</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                 
+                   <thead>	
+                   </thead>
+                  
+
+                   <th>Category-Name</th>
+                   <th>Action</th>
+                   <% @categories.each do |category| %>
+                   <tr>
+                   <td><%= category.category_name %></td>
+                  <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger btn-sm" %></td>
+
+                   </tr>
+                   <%end %>
+                   </tbody>
+                   </table>
+                  
+                
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+           <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      
+
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+ 
+
+    </div>
+  </div>
+
+  
+

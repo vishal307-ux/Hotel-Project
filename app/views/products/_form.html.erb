@@ -1,0 +1,30 @@
+<%= simple_form_for @product ,:html => {:multipart => true} do |f| %>
+  
+
+  
+     <div>
+       <%#= f.collection_select :category_id, Category.all, :category_id, :category_name %>
+      <%#= f.input :category_name%>
+    <%= f.association :categories, label_method: :category_name %>
+   <!-- f.association :company, collection: Company.all(order: 'name') -->
+   </div>
+   <div class="form-group">
+   <%= f.text_field :product_name,:class => "form-control form-control-user" , :id=>"exampleInputEmail",:placeholder=>"Enter Product_name..." ,:autocomplete=>"off" %>
+ </div>
+
+   <div class="form-group">
+   <%= f.text_field :product_price,:class => "form-control form-control-user" , :id=>"exampleInputEmail",:placeholder=>"Enter product_price..." ,:autocomplete=>"off"(:id => product.id) %>
+ </div>
+ 
+  
+
+  
+
+  </div>
+    <div class="action">
+      <%= f.submit :submit,  :class=>"btn btn-google btn-user btn-block"%>
+    </div> 
+
+
+
+<%end%>

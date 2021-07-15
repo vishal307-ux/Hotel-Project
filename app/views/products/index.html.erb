@@ -1,0 +1,154 @@
+
+
+
+
+
+
+
+
+
+
+  <title>SB Admin 2 - Tables</title>
+
+
+
+          </ul>
+
+        
+        
+
+         <div class="container-fluid"> 
+     
+
+
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          
+
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Category</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                 
+                   <thead>
+                    <th><%= sortable "category_name" %></th>
+                   <th><%= sortable "product_name" %></th>
+                   <th><%= sortable "product_price" %></th>
+                   <th>Quantity</th>
+                   
+                   
+                    <th>Action</th>
+                    </thead>
+                    <tbody>
+                    <%@products.each do |product| %>
+                    <tr>
+                    <td><%= product.categories.pluck(:category_name).join(', ')%></td>
+                    <td><%= product.product_name%>
+                    <td><%= product.product_price%>
+
+       <td> <span class="input-group-btn">
+        <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+    <span class="glyphicon glyphicon-minus"></span>
+    </button> </span>
+    <input type="text" id="quantity_<%=product.id%>" name="quantity" class="form-control input-number" value="1" min="1" max="100"> 
+    <span class="input-group-btn">
+   <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+      <span class="glyphicon glyphicon-plus"></span>
+   </button></span></td>
+                   
+            <%if current_user.user_type == 1%>
+              <td><%= link_to 'Edit', edit_product_path(product),:class=>"btn btn-primary" %></td>
+                     <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-primary" %></td>
+                    <td>                    <<% end -%>
+                   </td>
+
+
+
+
+         <td><%= link_to "Add To Cart", "javascript:void(0)", :class => "btn btn-primary" ,:onclick=>"test(#{product.id})",:id=>"submit"%></td>
+
+ 
+
+ </tr>
+                    <%end%>
+                  </tbody>
+                  
+                   </table>
+                     <%if current_user.user_type == 1%>
+                 <%= link_to :new_product,new_product_path,:class=>"btn btn-primary" %>
+                <<% end -%>
+              </div>
+            </div>
+          </div>
+            
+        </div>
+
+
+
+
+
+
+
+        <div class="col mb-2">
+            <div class="row">
+                
+                
+                <div class="col-sm-12 col-md-6 text-right">
+                  <%= link_to "Go To Cart",carts_path,:class=>"btn btn-lg btn-block btn-success text-uppercase"%>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+
+ 
+
+    </div>
+  </div>
+
+
+
+
+
+  <script>
+    // debugger;
+        function test(product_id)
+        {   
+
+          
+            
+            var quantity = document.getElementById("quantity_"+product_id).value;
+             
+            $.ajax({
+              url: "/CartsItem?quantity="+quantity+"&product_id="+product_id,
+             
+
+             
+              type: "post",             
+
+              success: function(){
+                alert('Saved Successfully');
+              },
+              error:function(){
+               alert('Error');
+              }
+            });
+        }
+
+    </script>
+
+
+
+
+
+  
+ 
+
+

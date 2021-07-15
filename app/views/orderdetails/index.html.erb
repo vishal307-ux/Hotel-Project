@@ -1,0 +1,173 @@
+
+
+
+
+
+
+
+
+ <!--  <div class="container">
+</div>
+
+<section class="jumbotron text-center">
+    <div class="container">
+    <h2 class="jumbotron-heading">Order Details!</h2>
+    </div>
+</section>
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                         <tr>
+                            
+                             <th scope="col">First Name</th>
+                              <th scope="col">Last Name</th>
+                               <th scope="col">Email</th>
+                                <th scope="col">City</th>
+                                 <th scope="col">Region</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col" >Product Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total Amount</th>
+                            </tr>
+                         </thead>
+                    <tbody>
+                    <%#@orderdetails.each do |orderdetail| %>
+                    <tr>
+
+                   
+                     <td><%#= orderdetail.order.first_name%></td>
+                    <td><%#= orderdetail.order.last_name%></td>
+                    <td><%#= orderdetail.order.email%></td>
+                    <td><%#= orderdetail.order.city%></td> 
+                     <td><%#= orderdetail.order.region%></td>
+                    <td><%#= orderdetail.product_name%></td>
+                    <td><%#= orderdetail.product_price%></td>
+                    <td><%#= orderdetail.quantity%></td>
+                    <td><%#= orderdetail.total_amount%></td>
+
+                    </tr>
+                     <%#end -%>   
+                    </tbody>
+                    </table>      
+           
+
+        
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+        <div class="invoice-title">
+          <h2>Invoice</h2><h3 class="pull-right">  Order Details!</h3>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6">
+            <address>
+            <strong>Billed To:</strong><br>
+             <%@orderdetails.limit(1).each do |orderdetail| %>
+             <%= orderdetail.order.first_name%><br>
+            <%= orderdetail.order.last_name%><br>
+           <%= orderdetail.order.email%><br>
+            <%= orderdetail.order.city%><br>
+            <%= orderdetail.order.region%>
+              <% end -%>
+            </address>
+          </div>
+          <div class="col-xs-6 text-right">
+            <address>
+              <strong>Shipped To:</strong><br>
+            <%@orderdetails.limit(1).each do |orderdetail| %>
+             <%= orderdetail.order.first_name%><br>
+            <%= orderdetail.order.last_name%><br>
+            <%= orderdetail.order.mobile%><br>
+            <%= orderdetail.order.city%><br>
+            <%= orderdetail.order.region%>
+              <% end -%>
+            </address>
+          </div>
+        </div>
+        
+
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Order summary</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                                <tr>
+                      <td><strong>Item</strong></td>
+                      <td class="text-center"><strong>Price</strong></td>
+                      <td class="text-center"><strong>Quantity</strong></td>
+                      <td class="text-right"><strong>Totals</strong></td>
+                                </tr>
+                </thead>
+                <tbody>
+                  <%@orderdetails.each do |orderdetail| %>
+                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                  <tr>
+                   <td><%= orderdetail.product_name%></td>
+                    <td class="text-center"><%= orderdetail.product_price%></td>
+                    <td class="text-center"><%= orderdetail.quantity%></td>
+                    <td  class="text-right"><%= orderdetail.total_amount%></td>
+                     
+
+                   <%end -%> 
+                   </tr>
+                   <%@orderdetails.limit(1).each do |orderdetail| %>   
+                  <tr>
+                    
+                    <td class="thick-line"></td>
+                    <td class="thick-line"></td>
+                    <td class="thick-line text-center"><strong>Sub Total</strong></td>
+                    <td class="thick-line text-right"><%= @orderdetails.sum(:total_amount)%>  </td>
+                   
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center"><strong>GST 18%</strong></td>
+                    <td class="no-line text-right"><%=@orderdetails.sum(:total_amount)*@orderdetails.sum(0.18)%></td>
+                  </tr>
+                  <tr>
+                    <td class="no-line"></td>
+                    <td class="no-line"></td>
+                    <td class="no-line text-center"><strong>Grand Total</strong></td>
+                    <td class="no-line text-right"><%=@orderdetails.sum(:total_amount)*@orderdetails.sum(0.18)+@orderdetails.sum(:total_amount)%></td>
+                  </tr>
+                  <% end -%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+ <div class="col mb-2">
+            <div class="col-sm-12 col-md-6 text-right">
+             <%= link_to "Go To Home",products_path,:class=>"btn btn-lg btn-block btn-success text-uppercase"%>
+                </div></div>
+
+  
+

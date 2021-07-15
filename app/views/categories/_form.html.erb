@@ -1,0 +1,25 @@
+ <div class="text-center">
+<h1 class="h4 text-gray-900 mb-4">Add Category!</h1>
+</div>
+<%= form_for @category,html: {class: "user"} do |f| %>
+
+ <div class="form-group">
+   <%= f.text_field :category_name,:class => "form-control form-control-user" , :id=>"exampleInputEmail",:placeholder=>"Enter category..." ,:autocomplete=>"off" %>
+ </div>
+ 
+
+  
+
+  </div>
+    <div class="action">
+      <%= f.submit :submit,  :class=>"btn btn-google btn-user btn-block"%>
+    </div>
+  
+ 
+
+  
+
+<%end%> 
+
+
+
